@@ -334,8 +334,8 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(size) {
-
+function getSpiralMatrix(/* size */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -392,8 +392,31 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let strCopy = str;
+  let res = strCopy;
+  const maxIterations = Math.min(iterations, res.length);
+
+  for (let i = 0; i < maxIterations; i += 1) {
+    let even = '';
+    let odd = '';
+    for (let j = 0; j < res.length; j += 1) {
+      if (j % 2 === 0) {
+        even += res[j];
+      } else {
+        odd += res[j];
+      }
+    }
+    res = even + odd;
+
+    if (i > 0 && res === strCopy) {
+      break;
+    }
+
+    strCopy = res;
+  }
+
+  return res;
 }
 
 /**
